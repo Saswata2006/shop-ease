@@ -7,75 +7,7 @@ import "./Order.css"
 
 function Order() {
   const [orders, setOrders] = useState([])
-  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
-
-  useEffect(() => {
-    fetchOrders()
-  }, [])
-
-  const fetchOrders = async () => {
-    try {
-      setLoading(true)
-      // Use mock data directly
-      setOrders([
-        {
-          id: 1,
-          itemName: "Premium Headphones",
-          quantity: 1,
-          totalPrice: 149.99,
-          status: "Delivered",
-          date: "2024-11-05",
-        },
-        {
-          id: 2,
-          itemName: "Wireless Mouse",
-          quantity: 2,
-          totalPrice: 99.98,
-          status: "In Transit",
-          date: "2024-11-08",
-        },
-        {
-          id: 3,
-          itemName: "USB-C Cable",
-          quantity: 3,
-          totalPrice: 59.97,
-          status: "Pending",
-          date: "2024-11-10",
-        },
-      ])
-    } catch (err) {
-      setOrders([
-        {
-          id: 1,
-          itemName: "Premium Headphones",
-          quantity: 1,
-          totalPrice: 149.99,
-          status: "Delivered",
-          date: "2024-11-05",
-        },
-        {
-          id: 2,
-          itemName: "Wireless Mouse",
-          quantity: 2,
-          totalPrice: 99.98,
-          status: "In Transit",
-          date: "2024-11-08",
-        },
-        {
-          id: 3,
-          itemName: "USB-C Cable",
-          quantity: 3,
-          totalPrice: 59.97,
-          status: "Pending",
-          date: "2024-11-10",
-        },
-      ])
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const getStatusClass = (status) => {
     return `status-${status.toLowerCase().replace(" ", "-")}`
@@ -88,11 +20,7 @@ function Order() {
         <p>Track and manage your purchases</p>
       </div>
 
-      {loading ? (
-        <div className="loading">
-          <div className="spinner-large"></div>
-        </div>
-      ) : orders.length === 0 ? (
+      {orders.length === 0 ? (
         <div className="empty-orders">
           <h2>No Orders Yet</h2>
           <p>Start shopping to see your orders here</p>
