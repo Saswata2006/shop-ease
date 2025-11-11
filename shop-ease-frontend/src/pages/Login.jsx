@@ -5,8 +5,6 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import "./Auth.css"
 
-axios.defaults.withCredentials = true
-
 function Login({ setIsAuthenticated }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
