@@ -18,8 +18,33 @@ function Order() {
   const fetchOrders = async () => {
     try {
       setLoading(true)
-      const response = await axios.get(`${API_URL}/api/orders`)
-      setOrders(response.data)
+      // Use mock data directly
+      setOrders([
+        {
+          id: 1,
+          itemName: "Premium Headphones",
+          quantity: 1,
+          totalPrice: 149.99,
+          status: "Delivered",
+          date: "2024-11-05",
+        },
+        {
+          id: 2,
+          itemName: "Wireless Mouse",
+          quantity: 2,
+          totalPrice: 99.98,
+          status: "In Transit",
+          date: "2024-11-08",
+        },
+        {
+          id: 3,
+          itemName: "USB-C Cable",
+          quantity: 3,
+          totalPrice: 59.97,
+          status: "Pending",
+          date: "2024-11-10",
+        },
+      ])
     } catch (err) {
       setOrders([
         {
