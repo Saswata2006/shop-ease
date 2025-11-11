@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import "./Auth.css"
 
-// Configure axios to send cookies with requests
 axios.defaults.withCredentials = true
 
 function Signup({ setIsAuthenticated }) {
@@ -31,8 +30,6 @@ function Signup({ setIsAuthenticated }) {
 
     try {
       const response = await axios.post(`${API_URL}/api/auth/signup`, { name, email, password })
-      // Token is automatically stored in cookies by the backend
-      // Also store in localStorage for reference
       localStorage.setItem("token", response.data.token)
       localStorage.setItem("user", JSON.stringify(response.data.user))
       setIsAuthenticated(true)

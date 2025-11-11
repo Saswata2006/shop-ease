@@ -9,6 +9,7 @@ function Order() {
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
 
   useEffect(() => {
     fetchOrders()
@@ -17,10 +18,9 @@ function Order() {
   const fetchOrders = async () => {
     try {
       setLoading(true)
-      const response = await axios.get("/api/orders")
+      const response = await axios.get(`${API_URL}/api/orders`)
       setOrders(response.data)
     } catch (err) {
-      // Mock data for preview
       setOrders([
         {
           id: 1,

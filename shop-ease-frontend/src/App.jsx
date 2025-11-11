@@ -13,7 +13,6 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  // Check if user is already logged in on app load
   useEffect(() => {
     const token = localStorage.getItem("token")
     if (token) {

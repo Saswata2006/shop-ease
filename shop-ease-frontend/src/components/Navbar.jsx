@@ -12,7 +12,6 @@ function Navbar({ isAuthenticated, setIsAuthenticated }) {
   const isActive = (path) => (location.pathname === path ? "active" : "")
 
   const handleLogout = () => {
-    // Clear authentication data from localStorage
     localStorage.removeItem("token")
     localStorage.removeItem("user")
     setIsAuthenticated(false)

@@ -11,6 +11,7 @@ function Products() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [currentPage, setCurrentPage] = useState(1)
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
 
   const itemsPerPage = 12
 
@@ -21,14 +22,12 @@ function Products() {
   const fetchProducts = async () => {
     try {
       setLoading(true)
-      const response = await axios.get("/api/products")
-      // Handle if response.data is an object with a products property
+      const response = await axios.get(`${API_URL}/api/products`)
       const productsData = Array.isArray(response.data) ? response.data : response.data.products || response.data.data || []
       setProducts(productsData)
       setError("")
     } catch (err) {
       setError("Failed to load products")
-      // Mock data for preview
       setProducts([
         {
           id: 1,
