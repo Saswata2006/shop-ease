@@ -5,6 +5,9 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import "./Auth.css"
 
+// Configure axios to send cookies with requests
+axios.defaults.withCredentials = true
+
 function Signup({ setIsAuthenticated }) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -13,6 +16,7 @@ function Signup({ setIsAuthenticated }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const navigate = useNavigate()
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -26,9 +30,13 @@ function Signup({ setIsAuthenticated }) {
     setLoading(true)
 
     try {
-      const response = await axios.post("/api/auth/signup", { name, email, password })
+      const response = await axios.post(`${API_URL}/api/auth/signup`, { name, email, password })
+      // Token is automatically stored in cookies by the backend
+      // Also store in localStorage for reference
       localStorage.setItem("token", response.data.token)
+      localStorage.setItem("user", JSON.stringify(response.data.user))
       setIsAuthenticated(true)
+      alert("Account created successfully! Welcome to ShopEase.")
       navigate("/products")
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed. Please try again.")
