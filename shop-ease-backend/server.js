@@ -9,11 +9,24 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
+// CORS Configuration
+const allowedOrigins = [
+  'https://shop-ease-taupe-kappa.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:3000',
+  process.env.FRONTEND_URL
+].filter(Boolean); // Remove undefined/null values
+
 app.use(cors({
-  origin: [process.env.FRONTEND_URL, 'https://shop-ease-taupe-kappa.vercel.app', 'http://localhost:5173', 'http://localhost:3000'],
-  credentials: true
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Handle preflight requests
+app.options('*', cors());
+
 app.use(express.json());
 app.use(cookieParser());
 
