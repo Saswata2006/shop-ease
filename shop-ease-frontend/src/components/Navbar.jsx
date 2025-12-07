@@ -53,13 +53,11 @@ function Navbar({ isAuthenticated, setIsAuthenticated }) {
               </Link>
             </li>
           )}
-          {isAuthenticated && user.role === 'admin' && (
-            <li>
-              <Link to="/admin" className={`nav-link ${isActive("/admin")}`} onClick={() => setMenuOpen(false)}>
-                Admin
-              </Link>
-            </li>
-          )}
+          <li>
+            <Link to="/admin" className={`nav-link ${isActive("/admin")}`} onClick={() => setMenuOpen(false)}>
+              Admin
+            </Link>
+          </li>
           <li>
             {isAuthenticated ? (
               <button
