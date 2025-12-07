@@ -8,7 +8,7 @@ dotenv.config();
 
 const signUp = async (req, res) => {
   try {
-    const { name, email, password } = req.body || {};
+    const { name, email, password, role } = req.body || {};
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
@@ -23,11 +23,12 @@ const signUp = async (req, res) => {
         name,
         email,
         password: hashedPassword,
+        role: role || "user",
       },
     });
 
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
@@ -35,7 +36,7 @@ const signUp = async (req, res) => {
     return res.status(201).json({ 
       message: "User created successfully",
       token,
-      user: { id: user.id, name: user.name, email: user.email }
+      user: { id: user.id, name: user.name, email: user.email, role: user.role }
     });
   } catch (err) {
     console.error(err);
@@ -64,7 +65,7 @@ const login = async (req, res) => {
     }
         
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
@@ -72,7 +73,7 @@ const login = async (req, res) => {
     return res.status(200).json({ 
       message: "Login successful",
       token,
-      user: { id: user.id, name: user.name, email: user.email }
+      user: { id: user.id, name: user.name, email: user.email, role: user.role }
     });
   } catch (err) {
     console.error(err);
