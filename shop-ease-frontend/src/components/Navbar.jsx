@@ -4,10 +4,13 @@ import { useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import "./Navbar.css"
 
+import logo from "../assets/shop-ease-logo.png"
+
 function Navbar({ isAuthenticated, setIsAuthenticated }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem("user") || "{}")
 
   const isActive = (path) => (location.pathname === path ? "active" : "")
 
@@ -22,6 +25,7 @@ function Navbar({ isAuthenticated, setIsAuthenticated }) {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-brand">
+          <img src={logo} alt="ShopEase Logo" className="brand-logo" />
           <span className="brand-text">ShopEase</span>
         </Link>
 
@@ -33,19 +37,26 @@ function Navbar({ isAuthenticated, setIsAuthenticated }) {
 
         <ul className={`navbar-menu ${menuOpen ? "open" : ""}`}>
           <li>
-            <Link to="/" className={`nav-link ${isActive("/")}`} onClick={() => setMenuOpen(false)}>
-              Home
+            <Link to="/products" className={`nav-link ${isActive("/products")}`} onClick={() => setMenuOpen(false)}>
+              Products
             </Link>
           </li>
           <li>
-            <Link to="/products" className={`nav-link ${isActive("/products")}`} onClick={() => setMenuOpen(false)}>
-              Products
+            <Link to="/cart" className={`nav-link ${isActive("/cart")}`} onClick={() => setMenuOpen(false)}>
+              Cart
             </Link>
           </li>
           {isAuthenticated && (
             <li>
               <Link to="/orders" className={`nav-link ${isActive("/orders")}`} onClick={() => setMenuOpen(false)}>
                 Orders
+              </Link>
+            </li>
+          )}
+          {isAuthenticated && user.role === 'admin' && (
+            <li>
+              <Link to="/admin/dashboard" className={`nav-link ${isActive("/admin/dashboard")}`} onClick={() => setMenuOpen(false)}>
+                Admin
               </Link>
             </li>
           )}

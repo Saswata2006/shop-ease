@@ -1,0 +1,103 @@
+.footer {
+    background-color: white;
+    border-top: 1px solid #e2e8f0;
+    padding: 4rem 0 2rem;
+    color: #1e293b;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.footer-section h4 {
+    color: #0f172a;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section a {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.footer-section a:hover {
+    color: #2563eb;
+}
+
+.copyright-text {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.language-selector {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-icon {
+    color: #1e293b;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.social-icon:hover {
+    transform: translateY(-2px);
+    color: #2563eb;
+}
+
+.app-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.app-btn {
+    height: 40px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.app-btn:hover {
+    opacity: 0.8;
+}
+
+.contact-info p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+}
