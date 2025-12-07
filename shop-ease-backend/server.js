@@ -9,8 +9,15 @@ dotenv.config();
 
 const app = express();
 
-// Allow all CORS
-app.use(cors());
+const allowedOrigins = [
+  'https://shop-ease-taupe-kappa.vercel.app',
+  'http://localhost:5173'
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 
 app.use(express.json());
 app.use(cookieParser());
