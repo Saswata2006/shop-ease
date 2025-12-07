@@ -13,7 +13,8 @@ function Signup({ setIsAuthenticated }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const navigate = useNavigate()
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
+  // Ensure API_URL doesn't have a trailing slash
+  const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:3000").replace(/\/$/, "")
 
   const handleSubmit = async (e) => {
     e.preventDefault()

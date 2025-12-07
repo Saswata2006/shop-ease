@@ -14,7 +14,8 @@ const AdminEditProduct = () => {
         const fetchProduct = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/${id}`, {
+                const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:3000").replace(/\/$/, "");
+                const response = await axios.get(`${API_URL}/api/products/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setProduct(response.data);
@@ -32,7 +33,8 @@ const AdminEditProduct = () => {
     const handleUpdate = async (updatedData) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`${import.meta.env.VITE_API_URL}/api/products/${id}`, updatedData, {
+            const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:3000").replace(/\/$/, "");
+            await axios.put(`${API_URL}/api/products/${id}`, updatedData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             navigate('/admin/dashboard');

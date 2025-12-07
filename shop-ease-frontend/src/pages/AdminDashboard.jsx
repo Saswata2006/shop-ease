@@ -16,7 +16,8 @@ const AdminDashboard = () => {
     const fetchProducts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`, {
+            const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:3000").replace(/\/$/, "");
+            const response = await axios.get(`${API_URL}/api/products`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setProducts(response.data);

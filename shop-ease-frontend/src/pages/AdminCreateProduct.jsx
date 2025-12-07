@@ -10,7 +10,8 @@ const AdminCreateProduct = () => {
     const handleCreate = async (productData) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`${import.meta.env.VITE_API_URL}/api/products`, productData, {
+            const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:3000").replace(/\/$/, "");
+            await axios.post(`${API_URL}/api/products`, productData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             navigate('/admin/dashboard');
