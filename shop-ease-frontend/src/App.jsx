@@ -41,21 +41,9 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/orders" element={<Order />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/admin" element={
-          <ProtectedRoute allowedRoles={['admin']}>
-            <AdminDashboard />
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/products/new" element={
-          <ProtectedRoute allowedRoles={['admin']}>
-            <AdminCreateProduct />
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/products/edit/:id" element={
-          <ProtectedRoute allowedRoles={['admin']}>
-            <AdminEditProduct />
-          </ProtectedRoute>
-        } />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/products/new" element={<AdminCreateProduct />} />
+        <Route path="/admin/products/edit/:id" element={<AdminEditProduct />} />
         <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
