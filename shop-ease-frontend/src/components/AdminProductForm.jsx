@@ -127,7 +127,7 @@ const AdminProductForm = ({ initialData, onSubmit, isEditing = false }) => {
                     <button
                         type="button"
                         className="btn-secondary"
-                        onClick={() => navigate('/admin/dashboard')}
+                        onClick={() => navigate('/admin')}
                     >
                         Cancel
                     </button>

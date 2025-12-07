@@ -23,7 +23,7 @@ const AdminEditProduct = () => {
             } catch (err) {
                 console.error('Error fetching product:', err);
                 alert('Product not found or error fetching data');
-                navigate('/admin/dashboard');
+                navigate('/admin');
             }
         };
 
@@ -37,7 +37,7 @@ const AdminEditProduct = () => {
             await axios.put(`${API_URL}/api/products/${id}`, updatedData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            navigate('/admin/dashboard');
+            navigate('/admin');
         } catch (err) {
             console.error('Error updating product:', err);
             alert('Failed to update product. Please try again.');

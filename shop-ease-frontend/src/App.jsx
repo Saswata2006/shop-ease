@@ -38,27 +38,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/signup" element={<Signup setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="/products" element={
-          <ProtectedRoute allowedRoles={['user', 'admin']}>
-            <Products />
-          </ProtectedRoute>
-        } />
-        <Route path="/orders" element={
-          <ProtectedRoute allowedRoles={['user', 'admin']}>
-            <Order />
-          </ProtectedRoute>
-        } />
-        <Route path="/cart" element={
-          <ProtectedRoute allowedRoles={['user', 'admin']}>
-            <Cart />
-          </ProtectedRoute>
-        } />
+        <Route path="/products" element={<Products />} />
+        <Route path="/orders" element={<Order />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={
-          <ProtectedRoute allowedRoles={['admin']}>
-            <AdminDashboard />
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/dashboard" element={
           <ProtectedRoute allowedRoles={['admin']}>
             <AdminDashboard />
           </ProtectedRoute>

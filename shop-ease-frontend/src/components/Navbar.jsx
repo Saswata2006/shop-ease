@@ -55,7 +55,7 @@ function Navbar({ isAuthenticated, setIsAuthenticated }) {
           )}
           {isAuthenticated && user.role === 'admin' && (
             <li>
-              <Link to="/admin/dashboard" className={`nav-link ${isActive("/admin/dashboard")}`} onClick={() => setMenuOpen(false)}>
+              <Link to="/admin" className={`nav-link ${isActive("/admin")}`} onClick={() => setMenuOpen(false)}>
                 Admin
               </Link>
             </li>

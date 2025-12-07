@@ -14,7 +14,7 @@ const AdminCreateProduct = () => {
             await axios.post(`${API_URL}/api/products`, productData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            navigate('/admin/dashboard');
+            navigate('/admin');
         } catch (err) {
             console.error('Error creating product:', err);
             alert('Failed to create product. Please try again.');
