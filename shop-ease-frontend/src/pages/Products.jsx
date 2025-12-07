@@ -98,7 +98,27 @@ const Products = () => {
               <div className="product-info">
                 <h3 className="product-title">{product.name}</h3>
                 <div className="product-price">${Number(product.price).toFixed(2)}</div>
-                <button className="btn-small">Add to Cart</button>
+                <button
+                  className="btn-small"
+                  onClick={() => {
+                    const token = localStorage.getItem('token');
+                    if (!token) {
+                      alert('Please login to add items to cart.');
+                      return;
+                    }
+                    const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:3000").replace(/\/$/, "");
+                    axios.post(`${API_URL}/api/cart`, { productId: product.id, quantity: 1 }, {
+                      headers: { Authorization: `Bearer ${token}` }
+                    })
+                      .then(() => alert('Added to cart!'))
+                      .catch(err => {
+                        console.error('Error adding to cart:', err);
+                        alert('Failed to add to cart.');
+                      });
+                  }}
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           ))}
