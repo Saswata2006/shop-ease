@@ -21,9 +21,9 @@ function Login({ setIsAuthenticated }) {
 
     try {
       const response = await axios.post(`${API_URL}/api/auth/login`, { email, password })
+      console.log("Login response:", response.data) // Debug: check if role is present
       localStorage.setItem("token", response.data.token)
       localStorage.setItem("user", JSON.stringify(response.data.user))
-      setIsAuthenticated(true)
       setIsAuthenticated(true)
       alert("Login successful! Welcome back.")
       navigate("/")
